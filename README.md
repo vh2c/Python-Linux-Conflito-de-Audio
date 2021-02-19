@@ -7,9 +7,9 @@ O PulseAudio é concebido para rodar em ambiente de usuário, já o Python entra
 Essa combinação faz com que seu script funcione isoladamente, porém assim que um script "disputa" a atenção do PulseAudio, seu script fica mudo, gerando erros do tipo "ERROR OPENING PCM | ERROR DEVICE | RESOURCE BUSY".
 
 ## Solução
-Rodar o AudioPulse em modo WIDE | --system
+Rodar o **AudioPulse** em modo WIDE | --system
 
-## TUTORIAL
+## Tutorial
 
 1. Criar arquivo /etc/systemd/system/pulseaudio.service
 
