@@ -27,35 +27,44 @@ conteudo:
 
 2. Desabilitar PulseAudio USER
 
-```sudo systemctl --global disable pulseaudio.service pulseaudio.socket```
+    ```sudo systemctl --global disable pulseaudio.service pulseaudio.socket```
+
 
 3. Atualizar /etc/pulse/client.conf
 
     adicionar:
     
-    ```default-server = /var/run/pulse/native```
+        ```default-server = /var/run/pulse/native```
+
 
 4. Adicionar usuarios ao grupo pulse-audio
 
-```sudo usermod -a -G pulse-audio USUARIO```
+    ```sudo usermod -a -G pulse-audio USUARIO```
+
 
 5. Habilitar serviço automaticamente
 
-```sudo systemctl --system enable pulseaudio.service```
+    ```sudo systemctl --system enable pulseaudio.service```
+
 
 6. Iniciar serviço sem Boot
 
-```sudo systemctl --system start pulseaudio.service```
+    ```sudo systemctl --system start pulseaudio.service```
+
 
 7. Verificar se está rodando:
 
-```sudo systemctl --system status pulseaudio.service```
+    ```sudo systemctl --system status pulseaudio.service```
+
 
 8. ENCONTRAR MANUALMENTE A CONFIGURACAO DE SAIDA, CASO A SUA NAO ESTEJA FUNCIONANDO
+
     a.Escolher um arquivo .wav e substituir o caminho /usr/share...
+    
     b.Ir substituindo os números 0,1 por 0,2 | 0,3 | 1,0 | 1,1 etc até encontrar o hardware que funcione 
 
     ```aplay -D plughw:0,1 /usr/share/sounds/alsa/Front_Right.wav```
+
 
 9. Atualizar /etc/pulse/default.pa
 
@@ -63,7 +72,7 @@ conteudo:
 ```
         load-module module-alsa-sink device=hw:1,7
 ```
->> Onde 1,7 são os números que vc encontrou na etapa 8 e que funcionaram com o audio
+    Onde 1,7 são os números que vc encontrou na etapa 8 e que funcionaram com o audio
 
 10. REBOOT
 
