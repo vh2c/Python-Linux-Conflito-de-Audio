@@ -82,7 +82,8 @@ conteudo:
         
         NOME: Carregar Audio
         COMANDO: pactl load-module module-alsa-sink device=hw:1,7
-        Não se esqueça os número 1,7 são os mesmos que vc verificou que funcionaram no seu hardware
+            a. Não se esqueça os número 1,7 são os mesmos que vc verificou que funcionaram no seu hardware
+            b. Caso voce nao tenha o pactl instalado, basta rodar 'sudo apt-get install pactl'
         COMENTARIO: Carregar Hardware no PulseAudio
 
 12. Novo REBOOT
