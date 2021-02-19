@@ -4,10 +4,10 @@ Esse conflito acontece porque o Linux utiliza o PulseAudio para gerenciamento do
 O PulseAudio é concebido para rodar em ambiente de usuário, já o Python entra no Linux através das bibliotecas os.system, subprocess, pygame, pyaudio, simpleaudio, etc, etc,etc como ROOT...portanto sem usuário - Uid = 0.
 Essa combinação faz com que seu script funcione isoladamente, porém assim que um script "disputa" a atenção do PulseAudio, seu script fica mudo, gerando erros do tipo "ERROR OPENING PCM | ERROR DEVICE | RESOURCE BUSY".
 
-##Solução
+## Solução
 Rodar o AudioPulse em modo WIDE | --system
 
-##TUTORIAL
+## TUTORIAL
 
 1. Criar arquivo /etc/systemd/system/pulseaudio.service
 
@@ -34,7 +34,7 @@ conteudo:
 
     adicionar:
     
-        ```default-server = /var/run/pulse/native```
+        default-server = /var/run/pulse/native
 
 
 4. Adicionar usuarios ao grupo pulse-audio
@@ -72,7 +72,7 @@ conteudo:
 ```
         load-module module-alsa-sink device=hw:1,7
 ```
-    Onde 1,7 são os números que vc encontrou na etapa 8 e que funcionaram com o audio
+   Onde 1,7 são os números que vc encontrou na etapa 8 e que funcionaram com o audio
 
 10. REBOOT
 
@@ -87,5 +87,5 @@ conteudo:
 12. Novo REBOOT
 
 ===============================================================================
-### Referencia: https://wiki.archlinux.org/index.php/PulseAudio/Examples
+###### Referencia: https://wiki.archlinux.org/index.php/PulseAudio/Examples
 ===============================================================================
