@@ -79,10 +79,10 @@ conteudo:
 11. PROBLEMA -> A configuração do audio funciona quando eu rodo a etapa 9 no terminal, mas o Pulseaudio não carregou o load-module do arquivo default.pa:
 
     Ir para "Aplicativos de Inicialização" e "Adicionar Comando Personalizado":
-     '''NOME: Carregar Audio
+        NOME: Carregar Audio
         COMANDO: pactl load-module module-alsa-sink device=hw:1,7
         Não se esqueça os número 1,7 são os mesmos que vc verificou que funcionaram no seu hardware
-        COMENTARIO: Carregar Hardware no PulseAudio '''
+        COMENTARIO: Carregar Hardware no PulseAudio
 
 12. Novo REBOOT
 
