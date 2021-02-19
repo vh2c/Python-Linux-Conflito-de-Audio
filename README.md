@@ -1,5 +1,6 @@
 # Python Linux Conflito de Audio - Python sem audio
 Afeta: Linux | Raspberry | Tinkerboard
+
 Existe um conflito de audio quando rodamos executáveis em PYTHON no Linux, impossibilitando rodar arquivos wav ou mp3 através de scripts em Python.
 Esse conflito acontece porque o Linux utiliza o PulseAudio para gerenciamento do ALSA, bibliotecas de audio e hardwares.
 O PulseAudio é concebido para rodar em ambiente de usuário, já o Python entra no Linux através das bibliotecas os.system, subprocess, pygame, pyaudio, simpleaudio, etc, etc,etc como ROOT...portanto sem usuário - Uid = 0.
