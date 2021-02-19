@@ -4,60 +4,60 @@ Esse conflito acontece porque o Linux utiliza o PulseAudio para gerenciamento do
 O PulseAudio é concebido para rodar em ambiente de usuário, já o Python entra no Linux através das bibliotecas os.system, subprocess, pygame, pyaudio, simpleaudio, etc, etc,etc como ROOT...portanto sem usuário - Uid = 0.
 Essa combinação faz com que seu script funcione isoladamente, porém assim que um script "disputa" a atenção do PulseAudio, seu script fica mudo, gerando erros do tipo "ERROR OPENING PCM | ERROR DEVICE | RESOURCE BUSY".
 
-# Solução
+##Solução
 Rodar o AudioPulse em modo WIDE | --system
 
-# TUTORIAL
+##TUTORIAL
 
 1. Criar arquivo /etc/systemd/system/pulseaudio.service
 
-==== conteudo =========================================
-[Unit]
-Description=PulseAudio System Server
+conteudo:
+```
+    [Unit]
+    Description=PulseAudio System Server
 
-[Service]
-Type=notify
-ExecStart=/bin/pulseaudio --daemonize=no --system --realtime --log-target=journal
+    [Service]
+    Type=notify
+    ExecStart=/bin/pulseaudio --daemonize=no --system --realtime --log-target=journal
 
-[Install]
-WantedBy=multi-user.target
-=======================================================
+    [Install]
+    WantedBy=multi-user.target
+```
+
 
 2. Desabilitar PulseAudio USER
-sudo systemctl --global disable pulseaudio.service pulseaudio.socket
-
+```sudo systemctl --global disable pulseaudio.service pulseaudio.socket```
 
 3. Atualizar /etc/pulse/client.conf
 
-==== adicionar =========================================
-default-server = /var/run/pulse/native
-========================================================
-
+    adicionar:
+    ```default-server = /var/run/pulse/native```
 
 4. Adicionar usuarios ao grupo pulse-audio
-sudo usermod -a -G pulse-audio USUARIO
+```sudo usermod -a -G pulse-audio USUARIO```
 
 5. Habilitar serviço automaticamente
-sudo systemctl --system enable pulseaudio.service
+```sudo systemctl --system enable pulseaudio.service```
 
 6. Iniciar serviço sem Boot
-sudo systemctl --system start pulseaudio.service
+```sudo systemctl --system start pulseaudio.service```
 
 7. Verificar se está rodando:
-sudo systemctl --system status pulseaudio.service
+```sudo systemctl --system status pulseaudio.service```
 
 8. ENCONTRAR MANUALMENTE A CONFIGURACAO DE SAIDA, CASO A SUA NAO ESTEJA FUNCIONANDO
     a.Escolher um arquivo .wav e substituir o caminho /usr/share...
     b.Ir substituindo os números 0,1 por 0,2 | 0,3 | 1,0 | 1,1 etc até encontrar o hardware que funcione 
 
-aplay -D plughw:0,1 /usr/share/sounds/alsa/Front_Right.wav
+    ```aplay -D plughw:0,1 /usr/share/sounds/alsa/Front_Right.wav```
 
 9. Atualizar /etc/pulse/default.pa
 
-==== adicionar =========================================
-load-module module-alsa-sink device=hw:1,7
-========================================================
-** Onde 1,7 são os números que vc encontrou na etapa 8 e que funcionaram com o audio
+    adicionar:
+```
+        load-module module-alsa-sink device=hw:1,7
+```
+>> Onde 1,7 são os números que vc encontrou na etapa 8 e que funcionaram com o audio
 
 10. REBOOT
 
@@ -66,11 +66,11 @@ load-module module-alsa-sink device=hw:1,7
    Ir para "Aplicativos de Inicialização" e "Adicionar Comando Personalizado":
        NOME: Carregar Audio
        COMANDO: pactl load-module module-alsa-sink device=hw:1,7
-       ** Não se esqueça os número 1,7 são os mesmos que vc verificou que funcionaram no seu hardware
+       >> Não se esqueça os número 1,7 são os mesmos que vc verificou que funcionaram no seu hardware
        COMENTARIO: Carregar Hardware no PulseAudio 
 
 12. Novo REBOOT
 
 ===============================================================================
-# Referencia: https://wiki.archlinux.org/index.php/PulseAudio/Examples
+### Referencia: https://wiki.archlinux.org/index.php/PulseAudio/Examples
 ===============================================================================
