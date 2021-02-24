@@ -36,6 +36,8 @@ conteudo:
 
 3. Atualizar /etc/pulse/client.conf
 
+     ```sudo nano /etc/pulse/client.conf```
+
     adicionar:
     
         default-server = /var/run/pulse/native
@@ -71,6 +73,8 @@ conteudo:
 
 
 9. Atualizar /etc/pulse/default.pa
+
+     ```sudo nano /etc/pulse/default.pa```
 
     adicionar:
 ```
