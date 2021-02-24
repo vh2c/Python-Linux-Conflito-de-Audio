@@ -13,6 +13,8 @@ Rodar o **AudioPulse** em modo WIDE | --system
 
 1. Criar arquivo /etc/systemd/system/pulseaudio.service
 
+     ```sudo nano /etc/systemd/system/pulseaudio.service```
+
 conteudo:
 ```
     [Unit]
